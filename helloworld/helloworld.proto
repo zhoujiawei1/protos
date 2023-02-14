@@ -1,15 +1,14 @@
 syntax = "proto3";
 
-package rpc;
+package helloworld;
 
+option go_package = "github.com/zhoujiawei1/protos/helloworld";
 option cc_generic_services = true;
 
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
-
-  rpc SayHelloStreamReply (HelloRequest) returns (stream HelloReply) {}
 }
 
 // The request message containing the user's name.
