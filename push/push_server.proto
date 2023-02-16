@@ -13,7 +13,7 @@ enum EventType {
 
 message Event {
     uint64 seq = 1;
-    uint32 event_type = 2;  // EventType
+    uint32 type = 2;  // EventType
     // data field 
     string text = 100;
 }
