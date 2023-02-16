@@ -22,7 +22,7 @@ load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_proto_library")
 
 proto_library(
     name = "protos",
-    srcs = glob(["**/*.proto"]),
+    srcs = glob(["helloworld/*.proto"]),
     visibility = [
         "//visibility:public",
     ],
@@ -37,5 +37,26 @@ cc_proto_library(
     ],
     deps = [
         ":protos",
+    ],
+)
+
+
+proto_library(
+    name = "push_protos",
+    srcs = glob(["push/*.proto"]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+    ],
+)
+
+cc_proto_library(
+    name = "cc_push_protos",
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":push_protos",
     ],
 )
