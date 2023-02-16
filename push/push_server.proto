@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package push;
+
+option go_package = "github.com/zhoujiawei1/protos/push";
+option cc_generic_services = true;
+
+enum EventType {
+    NONE = 0;
+    HEARTBEAT = 1;
+    TEXT = 100;
+}
+
+message Event {
+    uint64 seq = 1;
+    uint32 event_type = 2;  // EventType
+    // data field 
+    string text = 100;
+}
+
+service PushServer {
+  rpc StartPush (StartPushReq) returns (StartPushRsp) {}
+  // backend push
+  rpc BatchPush (BatchPushReq) returns (BatchPushRsp) {}
+}
+
+// The request message containing the user's name.
+message StartPushReq {
+  string uid = 1;
+}
+
+// The response message containing the greetings
+message StartPushRsp {
+  string message = 1;
+}
+
+message BatchPushReq {
+  repeated string uid_list = 1;
+  repeated Event event_list = 2;
+}
+
+message BatchPushRsp {
+  repeated string succ_uid_list = 1;
+  repeated string failed_uid_list = 2;
+}
